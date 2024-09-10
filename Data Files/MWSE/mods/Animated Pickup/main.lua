@@ -25,12 +25,13 @@ local function update(e)
 	---@type niNode[]
 	local expiredAnimations = {}
 	local updateParent = false
+	local delta = e.delta
 	local playerPos = tes3.player.position:copy()
 	playerPos.z = playerPos.z + tes3.mobilePlayer.height * heightFactor
 
 	-- Move our nodes
 	for node, data in pairs(animating or {}) do
-		local k = data.k + speed * 0.01 * e.delta
+		local k = data.k + speed * 0.01 * delta
 		node.translation = data.startPos:lerp(playerPos, k)
 		-- End of the animation?
 		if k >= maxK then
@@ -74,8 +75,17 @@ local nonAnimatable = {
 
 ---@param e activateEventData
 local function onActivate(e)
+	if tes3.menuMode() then return end
 	local target = e.target
-	if nonAnimatable[target.baseObject.objectType] then return end
+	local object = target.baseObject
+	if nonAnimatable[object.objectType] then return end
+	-- TODO consider blocking the animation only on items with OnActivate in their scripts.
+	-- Abot reads script text from esp files and uses string matching functions. IIRC it was this mod:
+	-- https://www.nexusmods.com/morrowind/mods/54423
+
+	-- Filter out items that have scripts. Items with special pickup handling with
+	-- OnActivate + Activate mwscript may not be picked up at any activate event.
+	if object.script then return end
 	local node = target.sceneNode:clone()
 	parentNode:attachChild(node)
 	updateParentNode()

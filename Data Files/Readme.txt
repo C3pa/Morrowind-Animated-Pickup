@@ -1,7 +1,7 @@
 				Animated Pickup
 				By C3pa
 
-Version: 1.0.0
+Version: 1.0.1
 
 _________
 Contents
@@ -26,6 +26,8 @@ ____________
 
 Animates item pickup from the game world. Inspired by a similar feature in Borderlands 2. For a full Borderlands 2-like looting experience I recommend Gerotaritor's Loot Detector (https://www.nexusmods.com/morrowind/mods/53947).
 
+If you are looking for a similar mod for OpenMW, I recommend excellent OpenMW Animated Pickup and Sneak to Steal (https://www.nexusmods.com/morrowind/mods/54585) by taitechnic.
+
 ____________
 Permissions
 ____________
@@ -36,6 +38,9 @@ Changelog
 ____________
 1.0.0
 Initial Release.
+1.0.1
+Bugfix: Don't play the pickup animation for items that have scripts. This prevents weird issues with items such as the Dwemer Puzzle Cube which can only be picked up after a certain quest entry has been met.
+Bugfix: Don't play the pickup animation when the inventory menu is open.
 
 ________
 Contact
