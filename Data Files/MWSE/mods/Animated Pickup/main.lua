@@ -72,6 +72,12 @@ local nonAnimatable = {
 	[tes3.objectType.door] = true,
 	[tes3.objectType.npc] = true,
 }
+local itemBlacklist = {
+	-- Quest Voice Greetings disabled pickup of Limeware Platter in Census and Excise Office
+	-- https://www.nexusmods.com/morrowind/mods/52273
+	["vd_misc_lw_platter"] = true,
+}
+
 
 ---@param e activateEventData
 local function onActivate(e)
@@ -86,12 +92,15 @@ local function onActivate(e)
 	-- Filter out items that have scripts. Items with special pickup handling with
 	-- OnActivate + Activate mwscript may not be picked up at any activate event.
 	if object.script then return end
+	local id = string.lower(object.id)
+	if itemBlacklist[id] then return end
+
 	local node = target.sceneNode:clone()
 	parentNode:attachChild(node)
 	updateParentNode()
 	startAnim(node)
 end
-event.register(tes3.event.activate, onActivate, { prioriry = -343 })
+event.register(tes3.event.activate, onActivate, { priority = -343 })
 
 local function onInitialized()
 	local root = tes3.game.worldObjectRoot

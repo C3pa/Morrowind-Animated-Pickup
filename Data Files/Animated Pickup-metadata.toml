@@ -1,0 +1,16 @@
+[package]
+name = "Animated Pickup"
+description = "Aimates item pickup from the game world."
+homepage = "https://www.nexusmods.com/morrowind/mods/54532"
+repository = "https://github.com/C3pa/Morrowind-Animated-Pickup"
+authors = [ "C3pa" ]
+version = "1.0.2"
+
+[dependencies.mwse]
+buildnumber = 3520
+
+[dependencies.mge-xe]
+version = ">=0.18.0"
+
+[tools.mwse]
+lua-mod = "Animated Pickup"

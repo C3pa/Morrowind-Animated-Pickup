@@ -1,7 +1,7 @@
 				Animated Pickup
 				By C3pa
 
-Version: 1.0.1
+Version: 1.0.2
 
 _________
 Contents
@@ -41,6 +41,8 @@ Initial Release.
 1.0.1
 Bugfix: Don't play the pickup animation for items that have scripts. This prevents weird issues with items such as the Dwemer Puzzle Cube which can only be picked up after a certain quest entry has been met.
 Bugfix: Don't play the pickup animation when the inventory menu is open.
+1.0.2
+Compatibility: Prevents animation on Limeware Platter in Census and Excise Office when using Quest Voice Greetings.
 
 ________
 Contact
